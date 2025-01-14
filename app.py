@@ -1,7 +1,9 @@
 import tkinter as tk
-from tkinter import messagebox
 import webbrowser, os
+import sub
 run = 1
+
+
 
 window = tk.Tk()
 window.geometry("500x500")
@@ -21,19 +23,30 @@ def open_app(path, file_name):
     def inner_func():
         global run
         os.chdir(path)
-        print(os.listdir())
         os.system(f'open {file_name}')
-        app_menu.destroy()
+        quit_app(app_menu)
         run = 0
+    return inner_func
 
+def open_website(website):
+    def inner_func():
+        webbrowser.open(website)
+        quit_app(window)
     return inner_func
 
 def quit_app(root):
-    root.quit()
+    global run
+    root.destroy()
+    run = 0
 
 def open_window():
     window = tk.Tk()
     center_window(window)
+
+def uni():
+    open_website(f'{sub.private_link_may}')
+    open_website(f'{sub.private_link_moo}')
+    open_website(f'{sub.private_link_soul}')
 
 class prompts_window():
     def open_app(root):
@@ -56,8 +69,9 @@ class prompts_window():
 while run == 1:
     tk.Label(text = 'Welcome!').pack()
     tk.Button(text="Open App", command=(prompts_window.open_app(window))).pack()
-    tk.Button(text="UOW", command=...).pack()
-    ...
+    tk.Button(text="UOW-(WIP)", command=uni).pack(side='bottom')
     
+    tk.Button(text="Source Code", command=open_website("https://github.com/HaydenFergo/App-Manager")).pack()
     center_window(window)
     window.mainloop()
+
