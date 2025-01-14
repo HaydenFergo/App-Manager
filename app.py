@@ -3,7 +3,7 @@ import webbrowser, os
 import sub
 run = 1
 
-# This is a Work in Progress
+super_important_stat = 0
 
 window = tk.Tk()
 window.geometry("500x500")
@@ -27,6 +27,12 @@ def open_app(path, file_name):
         quit_app(app_menu)
         run = 0
     return inner_func
+
+def easter_egg():
+    global super_important_stat
+    super_important_stat += 1
+    if super_important_stat == 15:
+        tk.Label(text='hi').pack()
 
 def open_website(website):
     def inner_func():
@@ -69,7 +75,7 @@ class prompts_window():
 while run == 1:
     tk.Label(text = 'Welcome!').pack()
     tk.Button(text="Open App", command=(prompts_window.open_app(window))).pack()
-    tk.Button(text="UOW-(WIP)", command=uni).pack(side='bottom')
+    tk.Button(text="UOW-(WIP)", command=easter_egg).pack(side='bottom')
     
     tk.Button(text="Source Code", command=open_website("https://github.com/HaydenFergo/App-Manager")).pack()
     center_window(window)
